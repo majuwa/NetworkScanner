@@ -2,6 +2,7 @@ package majuwa.network.model;
 
 public class Configuration {
 	private boolean showAllHosts = false;
+	private String programmName = "Java-Network-Scan";
 	private static Configuration uniquee;
 	public Configuration(){
 		loadConfig();
@@ -17,5 +18,8 @@ public class Configuration {
 			uniquee = new Configuration();
 		}
 		return uniquee;
+	}
+	public String getAppName(){
+		return this.programmName;
 	}
 }

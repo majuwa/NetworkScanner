@@ -15,15 +15,10 @@ public class Scan {
 		boolean hosts = Configuration.instance().getShowAllHosts();
 		for (IPAddress ip : container) {
 			InetAddress inet = InetAddress.getByName(ip.getHost());
-			if (inet.isReachable(5000))
+			if (inet.isReachable(500))
 				ip.setStatus(true);
 			else
-				if(hosts)
-					ip.setStatus(false);
-				else
-					container.removeAddress(ip);
-			
-			
+				ip.setStatus(false);
 		}
 	}
 }
