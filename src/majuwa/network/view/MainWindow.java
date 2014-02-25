@@ -6,7 +6,6 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.beans.PropertyChangeEvent;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -30,14 +29,13 @@ import javax.swing.ListSelectionModel;
 import javax.swing.SwingWorker;
 
 import majuwa.network.controller.MainController;
-import majuwa.network.model.AddressContainer;
 import majuwa.network.model.Configuration;
 import majuwa.network.model.IPAddress;
 
 public class MainWindow extends JFrame implements ActionListener, Observer {
 	private static final long serialVersionUID = 1L;
 	private MainController controller;
-	private DefaultListModel defaultList;
+	private DefaultListModel<IPAddress> defaultList;
 	// Menu
 	private JMenuBar menuBar;
 	private JMenu menuMain;
@@ -52,14 +50,14 @@ public class MainWindow extends JFrame implements ActionListener, Observer {
 	private JButton btScan;
 
 	// ListPanel
-	private JList list;
+	private JList<IPAddress> list;
 
 	private JProgressBar progress;
 
 	public MainWindow(MainController controller) {
 		super("Java Network-Scanner");
 		this.controller = controller;
-		defaultList = new DefaultListModel();
+		defaultList = new DefaultListModel<IPAddress>();
 		this.initializeWindow();
 		pack();
 		setVisible(true);
@@ -114,7 +112,7 @@ public class MainWindow extends JFrame implements ActionListener, Observer {
 		this.add(addressPane, BorderLayout.NORTH);
 
 		// ListView
-		list = new JList(defaultList);
+		list = new JList<IPAddress>(defaultList);
 		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		list.setLayoutOrientation(JList.VERTICAL);
 		list.setVisibleRowCount(-1);
@@ -130,6 +128,11 @@ public class MainWindow extends JFrame implements ActionListener, Observer {
 	}
 
 	private class MenuAction extends AbstractAction {
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = -4795511933000397816L;
+
 		public MenuAction(String title, ImageIcon image, String toolTipText,
 				KeyStroke acceleratorKey) {
 			super(title, image);
@@ -167,11 +170,6 @@ public class MainWindow extends JFrame implements ActionListener, Observer {
 
 	}
 
-	private void getList() {
-
-		for (IPAddress ip : AddressContainer.instance())
-			defaultList.addElement(ip);
-	}
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {

@@ -46,10 +46,4 @@ public class Calculate {
 		}
 
 	}
-
-	private void range(String block, String ende) {
-		int i = Integer.parseInt(block);
-		int j = Integer.parseInt(ende);
-
-	}
 }

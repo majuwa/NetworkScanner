@@ -12,7 +12,6 @@ public class Scan {
 	}
 
 	public void scan() throws UnknownHostException,IOException {
-		boolean hosts = Configuration.instance().getShowAllHosts();
 		for (IPAddress ip : container) {
 			InetAddress inet = InetAddress.getByName(ip.getHost());
 			if (inet.isReachable(500))
