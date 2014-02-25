@@ -199,7 +199,7 @@ public class MainWindow extends JFrame implements ActionListener, Observer {
 				+ "You should have received a copy of the GNU General Public License\n"
 				+ "along with this program.  If not, see http://www.gnu.org/licenses/.\n";
 		JOptionPane.showMessageDialog(this, Configuration.instance()
-				.getAppName() + "\n" + owner + "\n" + licence);
+				.getAppName() + "\n" + owner + "\n" + licence,"Licence",JOptionPane.INFORMATION_MESSAGE);
 	}
 
 	@Override
